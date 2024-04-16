@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Title</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
 </head>
 <body>
     <header>
@@ -19,6 +20,15 @@
         <h2>Introduction</h2>
         <p>Introduction to your paper's topic.</p>
     </section>
+    <section>
+        <h2>Run Model Inference</h2>
+        <input type="file" id="image-input" accept="image/*" hidden />
+        <button onclick="document.getElementById('image-input').click();">Upload Image</button>
+        <img id="uploaded-image" src="" alt="Uploaded Image" style="max-width: 100%; display: none;">
+        <button id="run-inference" style="display: none;">Run Inference</button>
+        <p id="model-output">Output will appear here.</p>
+    </section>
+    <script src="script.js"></script>
     <footer>
         <p>Contact information: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
     </footer>
