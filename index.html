@@ -1,36 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Title</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <title>YOLOv8 Object Detection</title>
     <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+    <script src="script.js"></script>
+    <style>
+      canvas {
+          display:block;
+          border: 1px solid black;
+          margin-top:10px;
+          width: 100%;
+      }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Project Title</h1>
-        <p>By Your Namea</p>
-    </header>
-    <section>
-        <h2>Abstract</h2>
-        <p>This section will summarize the paper.</p>
-    </section>
-    <section>
-        <h2>Introduction</h2>
-        <p>Introduction to your paper's topic.</p>
-    </section>
-    <section>
-        <h2>Run Model Inference</h2>
-        <input type="file" id="image-input" accept="image/*" hidden />
-        <button onclick="document.getElementById('image-input').click();">Upload Image</button>
-        <img id="uploaded-image" src="" alt="Uploaded Image" style="max-width: 100%; display: none;">
-        <button id="run-inference" style="display: none;">Run Inference</button>
-        <p id="model-output">Output will appear here.</p>
-    </section>
-    <script src="script.js"></script>
-    <footer>
-        <p>Contact information: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-    </footer>
+    <section class="section">
+        <div class="container">
+          <h1 class="title">
+            SlideCraft: Synthetic Slides Generation for Robust Slide Analysis
+          </h1>
+          <p class="subtitle">
+            <strong>Demo</strong>
+          </p>
+          <input id="uploadInput" class="button" type="file"/>
+    <canvas></canvas>
+        </div>
+      </section>
+    
+    <script>
+      /**
+       * "Upload" button onClick handler: uploads selected image file
+       * to backend, receives array of detected objects
+       * and draws them on top of image
+       */
+       const input = document.getElementById("uploadInput");
+       input.addEventListener("change",async(event) => {
+           const boxes = await detect_objects_on_image(event.target.files[0]);
+           draw_image_and_boxes(event.target.files[0],boxes);
+       })
+
+      
+    </script>
 </body>
 </html>
